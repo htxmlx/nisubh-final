@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { auth } from "@clerk/nextjs/server";
 
 export default async function Page({
@@ -45,7 +45,7 @@ export default async function Page({
     const { userId } = auth();
 
     if (!listing) return notFound();
-    if (!userId) return notFound();
+    if (!userId) return redirect("/sign-in");
 
     const userReview = await prisma.rating.findUnique({
         where: {
