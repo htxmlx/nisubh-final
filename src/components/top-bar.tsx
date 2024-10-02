@@ -25,7 +25,7 @@ export default function TopBar() {
                         />
                         <span className="sr-only">Logo</span>
                     </Button>
-                    Nisubh
+                    <span className="font-semibold">Nisu BH</span>
                 </Link>
 
                 <Button

@@ -38,7 +38,7 @@ export default function Home() {
         { label: "All", value: undefined },
         { label: "Main", value: CloseTo.main },
         { label: "West", value: CloseTo.west },
-        { label: "Both", value: CloseTo.both },
+        { label: "Both Campus", value: CloseTo.both },
     ];
 
     function handleFilterClick(value: CloseTo | undefined) {
@@ -47,8 +47,10 @@ export default function Home() {
     }
 
     // Filter the data based on the search term
-    const filteredPosts = data?.filter((post) =>
-        post.title.toLowerCase().includes(searchTerm.toLowerCase())
+    const filteredPosts = data?.filter(
+        (post) =>
+            post.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
+            (closeToFilter === undefined || post.close_to === closeToFilter)
     );
 
     return (
@@ -58,7 +60,7 @@ export default function Home() {
                     <Badge
                         key={option.label}
                         onClick={() => handleFilterClick(option.value)}
-                        className="cursor-pointer"
+                        className="cursor-pointer px-4 py-2"
                         variant={
                             closeToFilter === option.value
                                 ? "default"
@@ -76,7 +78,6 @@ export default function Home() {
                 placeholder="Search posts..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="mb-4 p-2 border border-gray-300 rounded"
             />
 
             <ul className="space-y-2">
