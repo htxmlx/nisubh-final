@@ -55,7 +55,7 @@ export default function Home() {
 
     return (
         <Section>
-            <div className="flex gap-2 mb-4">
+            <div className="flex gap-2 mb-5">
                 {filterOptions.map((option) => (
                     <Badge
                         key={option.label}
